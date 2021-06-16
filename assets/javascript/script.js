@@ -36,7 +36,7 @@ var getForecast = function (citySearch) {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' +
                 cityLat +
                 '&lon=' + cityLon +
-                '&exclude=minutely,hourly,alerts&units=imperial&appid=6a2c1ceff53c48a68b5e414a71aa27d0'
+                '&exclude=minutely,hourly,alerts&units=imperial&appid=aef3eaaa7164d35e707dd205449ae85b'
             )
             .then(function(response) {
                 return response.json();
