@@ -121,6 +121,32 @@ var getForecast = function (citySearch) {
                 } else {
                     $('#future').prepend("<h3 id='future-header'>5-Day Forecast:</h3>")  
                 }
+
+                // empty forecast container
+
+                $('#forecast-container').empty();
+
+                // loop through entrys in future forecast and create card
+
+                futureForecast.forEach(function(dayForecast) {
+                    var weatherCard = $("<div>").attr({"class": "card text-white bg-dark m-1"});
+                    var weatherCardHeader = $("<div>").attr({"class": "card-header"}).html('<h5>' + dayForecast.date + '<img src=https://openweathermap.org/img/wn/' + dayForecast.icon + '@2x.png>' + '</h5>');
+                    var weatherCardBody = $("<div>").attr({"class": "card-body"});
+                    var weatherCardTemp = $("<p>").attr({"class": "card-text"}).text("Temp: " + dayForecast.temp + " ℉");
+                    var weatherCardWind = $("<p>").attr({"class": "card-text"}).text("Wind: " + dayForecast.wind + " MPH");
+                    var weatherCardHumidity = $("<p>").attr({"class": "card-text"}).text("Humidity: " + dayForecast.humidity + "%");
+
+                    // append the card to the forecast container
+
+                    $("#forecast-container").append(weatherCard);
+
+                    // append temperature, wind and humidity data to the card
+
+                    weatherCardBody.append(weatherCardTemp, weatherCardWind, weatherCardHumidity)
+
+                    // append the body to the card 
+                    weatherCard.append(weatherCardHeader, weatherCardBody)
+                })
             
 
                 
@@ -129,4 +155,8 @@ var getForecast = function (citySearch) {
         })
 
 }
+
+// Load initial searches from localstorage
+loadSearches();
+
 
